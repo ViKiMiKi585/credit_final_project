@@ -812,14 +812,6 @@
     }, { threshold: 0.15 });
     fadeSections.forEach(section => observer.observe(section));
 
-    // ---------- КАРТА ----------
-    const map = L.map('russiaMap', {
-      center: [55, 70],
-      zoom: 4,
-      zoomControl: true,
-      scrollWheelZoom: true
-    });
-
    // ---------- КАРТА (2ГИС) ----------
 const map = L.map('russiaMap', {
   center: [55, 70],
