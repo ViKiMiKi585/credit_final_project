@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    /* ===== ВСЕ ВАШИ СТИЛИ ===== */
+    /* ===== ВСЕ ВАШИ СТИЛИ (без изменений) ===== */
     :root {
       --bg-body: #f5f0fa;
       --bg-card: #ffffff;
@@ -613,12 +613,14 @@
     <div><span>Финиш</span> <strong>30.06.2026</strong></div>
   </div>
 
+  <!-- ===== ОСНОВНАЯ СТАТИСТИКА ===== -->
   <div class="stat-panel fade-section">
     <div class="stat-card"><span class="stat-number">168</span><span class="stat-label">рабочих дней</span></div>
     <div class="stat-card"><span class="stat-number">1340</span><span class="stat-label">часов</span></div>
     <div class="stat-card"><span class="stat-number">4 824 000</span><span class="stat-label">секунд</span></div>
   </div>
 
+  <!-- ===== БЛОК С АНАЛОГИЯМИ (5 КАРТОЧЕК) ===== -->
   <div class="stat-panel fade-section" style="margin-top:0.5rem;">
     <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
       <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">6 700 км</div>
@@ -642,6 +644,7 @@
     </div>
   </div>
 
+  <!-- ===== ЧАСЫ ПО РОЛЯМ ===== -->
   <div class="hours-roles fade-section">
     <div class="hours-flip-card">
       <div class="hours-flip-inner">
@@ -685,6 +688,7 @@
     ✅ Завершено <span>18</span> задач (полный / частичный цикл)
   </div>
 
+  <!-- ===== КАРТА ===== -->
   <div class="map-section fade-section">
     <h2>📍 <em>Команда</em> · распределение по регионам</h2>
     <div id="russiaMap"></div>
@@ -702,6 +706,7 @@
     </div>
   </div>
 
+  <!-- ===== РЕФЛЕКСИЯ ===== -->
   <div class="feedback-section fade-section" id="feedbackSection">
     <h2>💬 Рефлексия команды</h2>
     <div class="sub">Заполните форму — ваши ответы появятся на доске ниже</div>
@@ -732,9 +737,9 @@
     </div>
   </div>
 
+  <!-- ===== БЛОК РУКОВОДИТЕЛЯ ===== -->
   <div class="leader-section fade-section" id="leaderSection">
     <div class="leader-avatar">
-      <!-- ===== ФОТО РУКОВОДИТЕЛЯ ===== -->
       <img src="https://axenix.pro/wp-content/uploads/2023/11/vladimirseljankin.jpg" alt="Владимир Селянкин" />
     </div>
     <div class="leader-info">
@@ -751,6 +756,7 @@
     </div>
   </div>
 
+  <!-- ===== ПОЖЕЛАНИЯ ===== -->
   <div class="wishes-section fade-section" id="wishesSection">
     <h2>🌟 Тёплые пожелания</h2>
     <div class="sub">Скажите друг другу что-то важное напоследок</div>
@@ -762,7 +768,7 @@
     </form>
 
     <div class="wishes-wall" id="wishesWall">
-      <!-- Сюда загружаются пожелания из таблицы -->
+      <!-- Сюда загружаются пожелания -->
     </div>
   </div>
 
@@ -773,10 +779,10 @@
 
 </div>
 
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
- <script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
   (function() {
-    // ===== ВАШ НОВЫЙ URL =====
+    // ===== НОВЫЙ URL =====
     const API_URL = 'https://script.google.com/macros/s/AKfycbypQnwgLtzMLf1ONDu6lHYmfjZL855aZ34iwe1Rq7fo4Edl0mg_QtCGHBpbhC2NQn1fIw/exec';
 
     // ---------- АНИМАЦИЯ ----------
@@ -793,7 +799,7 @@
     }, { threshold: 0.15 });
     fadeSections.forEach(section => observer.observe(section));
 
-    // ---------- КАРТА (OpenStreetMap + CartoDB) ----------
+    // ---------- КАРТА ----------
     const map = L.map('russiaMap', {
       center: [55, 70],
       zoom: 4,
@@ -802,7 +808,7 @@
     });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; CartoDB',
+      attribution: '&copy; OpenStreetMap, CartoDB',
       subdomains: 'abcd',
       maxZoom: 19
     }).addTo(map);
@@ -869,9 +875,15 @@
         const data = await response.json();
 
         if (Array.isArray(data)) {
-          const liked = data.map(f => f.liked).filter(Boolean);
-          const missed = data.map(f => f.missed).filter(Boolean);
-          const learned = data.map(f => f.learned).filter(Boolean);
+          const feedbacks = data.filter(item => 
+            item.liked !== undefined || 
+            item.missed !== undefined || 
+            item.learned !== undefined
+          );
+          
+          const liked = feedbacks.map(f => f.liked).filter(Boolean);
+          const missed = feedbacks.map(f => f.missed).filter(Boolean);
+          const learned = feedbacks.map(f => f.learned).filter(Boolean);
 
           renderBoard(liked, missed, learned);
         } else {
@@ -909,7 +921,7 @@
         return;
       }
 
-      const payload = { name, liked, missed, learned };
+      const payload = { type: 'feedback', name, liked, missed, learned };
 
       try {
         const response = await fetch(API_URL, {
@@ -938,17 +950,89 @@
       }
     });
 
-    // ---------- ЗАПУСК ----------
-    loadBoard();
-
-    // ---------- Пожелания отключены для простоты ----------
+    // ---------- ЗАГРУЗКА ПОЖЕЛАНИЙ ----------
     const wishesWall = document.getElementById('wishesWall');
-    if (wishesWall) {
-      wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">💡 Пожелания временно отключены для стабильности.</div>';
+
+    async function loadWishes() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          const wishes = data
+            .filter(item => item.text !== undefined)
+            .map(item => ({
+              name: item.name || 'Аноним',
+              text: item.text || ''
+            }));
+
+          renderWishes(wishes);
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки пожеланий:', error);
+        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">❌ Ошибка загрузки пожеланий</div>';
+      }
     }
 
+    function renderWishes(wishes) {
+      if (wishes.length === 0) {
+        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">Пока нет пожеланий. Будьте первыми! ✨</div>';
+        return;
+      }
+      wishesWall.innerHTML = wishes.map(w => 
+        `<div class="wish-item"><strong>${escapeHtml(w.name)}</strong>: ${escapeHtml(w.text)}</div>`
+      ).join('');
+      wishesWall.scrollTop = wishesWall.scrollHeight;
+    }
+
+    // ---------- ОТПРАВКА ПОЖЕЛАНИЯ ----------
+    document.getElementById('wishesForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('wishName').value.trim() || 'Аноним';
+      const text = document.getElementById('wishText').value.trim();
+
+      if (!text) {
+        alert('Напишите пожелание :)');
+        return;
+      }
+
+      const payload = { type: 'wish', name, text };
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          document.getElementById('wishName').value = '';
+          document.getElementById('wishText').value = '';
+
+          setTimeout(loadWishes, 1000);
+          alert('🌟 Спасибо! Ваше пожелание сохранено.');
+        } else {
+          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
+        }
+
+      } catch (error) {
+        console.error('Ошибка отправки пожелания:', error);
+        alert('❌ Ошибка отправки. Попробуйте ещё раз.');
+      }
+    });
+
+    // ---------- ЗАПУСК ----------
+    loadBoard();
+    loadWishes();
+
   })();
- </script>
+</script>
 
 </body>
 </html>
