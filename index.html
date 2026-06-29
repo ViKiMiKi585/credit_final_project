@@ -823,8 +823,9 @@
       scrollWheelZoom: true
     });
 
-   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  attribution: '&copy; Esri',
+   L.tileLayer('https://tile{n}.maps.2gis.com/v2/tiles/online_hd/{z}/{x}/{y}.png?key=c544c0e9-c55d-44a8-a53b-02161b587322', {
+  attribution: '&copy; <a href="https://2gis.ru" target="_blank">2ГИС</a>',
+  subdomains: '01234',
   maxZoom: 19
 }).addTo(map);
 
