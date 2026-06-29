@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    /* ===== ВСЕ ВАШИ СТИЛИ ===== */
     :root {
       --bg-body: #f5f0fa;
       --bg-card: #ffffff;
@@ -733,9 +734,8 @@
 
   <div class="leader-section fade-section" id="leaderSection">
     <div class="leader-avatar">
-      <!-- ВСТАВЬТЕ СВОЁ ФОТО -->
-      <!-- <img src="путь_к_вашему_фото.jpg" alt="Руководитель" /> -->
-      <span class="placeholder">👤</span>
+      <!-- ===== ФОТО РУКОВОДИТЕЛЯ ===== -->
+      <img src="https://axenix.pro/wp-content/uploads/2023/11/vladimirseljankin.jpg" alt="Владимир Селянкин" />
     </div>
     <div class="leader-info">
       <div class="name">Владимир Селянкин</div>
@@ -776,10 +776,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   (function() {
-    // ВАШ НОВЫЙ URL ИЗ GOOGLE APPS SCRIPT
+    // ===== ВАШ НОВЫЙ URL =====
     const API_URL = 'https://script.google.com/macros/s/AKfycbzwftoCDkPtMPgvvhq1qEezoTXq6ewaBXNniZJELP0IBecJ-x-ijYEl3JC5VfxQHyuX9A/exec';
 
-    // ---------- АНИМАЦИЯ ПРИ СКРОЛЛЕ ----------
+    // ---------- АНИМАЦИЯ ----------
     const fadeSections = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
@@ -793,7 +793,7 @@
     }, { threshold: 0.15 });
     fadeSections.forEach(section => observer.observe(section));
 
-    // ---------- КАРТА (ПЕРВАЯ ВЕРСИЯ: OpenStreetMap + CartoDB) ----------
+    // ---------- КАРТА (OpenStreetMap + CartoDB) ----------
     const map = L.map('russiaMap', {
       center: [55, 70],
       zoom: 4,
@@ -850,7 +850,7 @@
       return d.innerHTML;
     }
 
-    // ---------- ЗАГРУЗКА ОТЗЫВОВ (РЕФЛЕКСИЯ) ----------
+    // ---------- ЗАГРУЗКА ОТЗЫВОВ ----------
     const boardLiked = document.getElementById('boardLiked');
     const boardMissed = document.getElementById('boardMissed');
     const boardLearned = document.getElementById('boardLearned');
@@ -869,7 +869,6 @@
         const data = await response.json();
 
         if (Array.isArray(data)) {
-          // Фильтруем отзывы (где есть liked/missed/learned)
           const feedbacks = data.filter(item => 
             item.liked !== undefined || 
             item.missed !== undefined || 
