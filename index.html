@@ -823,46 +823,55 @@
       scrollWheelZoom: true
     });
 
-   L.tileLayer('https://tile{n}.maps.2gis.com/v2/tiles/online_hd/{z}/{x}/{y}.png?key=c544c0e9-c55d-44a8-a53b-02161b587322', {
+   // ---------- КАРТА (2ГИС) ----------
+const map = L.map('russiaMap', {
+  center: [55, 70],
+  zoom: 4,
+  zoomControl: true,
+  scrollWheelZoom: true
+});
+
+L.tileLayer('https://tile{n}.maps.2gis.com/v2/tiles/online_hd/{z}/{x}/{y}.png?key=c544c0e9-c55d-44a8-a53b-02161b587322', {
   attribution: '&copy; <a href="https://2gis.ru" target="_blank">2ГИС</a>',
   subdomains: '01234',
   maxZoom: 19
 }).addTo(map);
 
-    const cities = [
-      { name: 'Москва', coords: [55.7558, 37.6173] },
-      { name: 'Тверь', coords: [56.8596, 35.9116] },
-      { name: 'Самарская область', coords: [53.1959, 50.1002] },
-      { name: 'Московская область', coords: [55.6121, 37.7000] },
-      { name: 'Санкт-Петербург', coords: [59.9343, 30.3351] },
-      { name: 'Казань', coords: [55.7887, 49.1221] },
-      { name: 'Нижний Новгород', coords: [56.2965, 43.9361] },
-      { name: 'Смоленск', coords: [54.7826, 32.0453] },
-      { name: 'Краснодар', coords: [45.0355, 38.9753] },
-      { name: 'Алматы', coords: [43.2220, 76.8512] }
-    ];
+// Города и маркеры (оставляем как было)
+const cities = [
+  { name: 'Москва', coords: [55.7558, 37.6173] },
+  { name: 'Тверь', coords: [56.8596, 35.9116] },
+  { name: 'Самарская область', coords: [53.1959, 50.1002] },
+  { name: 'Московская область', coords: [55.6121, 37.7000] },
+  { name: 'Санкт-Петербург', coords: [59.9343, 30.3351] },
+  { name: 'Казань', coords: [55.7887, 49.1221] },
+  { name: 'Нижний Новгород', coords: [56.2965, 43.9361] },
+  { name: 'Смоленск', coords: [54.7826, 32.0453] },
+  { name: 'Краснодар', coords: [45.0355, 38.9753] },
+  { name: 'Алматы', coords: [43.2220, 76.8512] }
+];
 
-    const markerIcon = L.divIcon({
-      className: 'custom-marker',
-      html: '<div style="background: #E86A1F; width:18px; height:18px; border-radius:50%; border:3px solid #fff; box-shadow: 0 0 0 2px #5A2A8C;"></div>',
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      popupAnchor: [0, -12]
-    });
+const markerIcon = L.divIcon({
+  className: 'custom-marker',
+  html: '<div style="background: #E86A1F; width:18px; height:18px; border-radius:50%; border:3px solid #fff; box-shadow: 0 0 0 2px #5A2A8C;"></div>',
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12]
+});
 
-    cities.forEach(city => {
-      L.marker(city.coords, { icon: markerIcon })
-        .addTo(map)
-        .bindPopup(`<b style="color:#5A2A8C;">${city.name}</b><br><span style="color:#4a3a5e;">финансовый центр</span>`);
-      L.circle(city.coords, {
-        color: '#E86A1F',
-        fillColor: '#E86A1F',
-        fillOpacity: 0.08,
-        radius: 140000
-      }).addTo(map);
-    });
+cities.forEach(city => {
+  L.marker(city.coords, { icon: markerIcon })
+    .addTo(map)
+    .bindPopup(`<b style="color:#5A2A8C;">${city.name}</b><br><span style="color:#4a3a5e;">финансовый центр</span>`);
+  L.circle(city.coords, {
+    color: '#E86A1F',
+    fillColor: '#E86A1F',
+    fillOpacity: 0.08,
+    radius: 140000
+  }).addTo(map);
+});
 
-    setTimeout(() => map.invalidateSize(), 500);
+setTimeout(() => map.invalidateSize(), 500);
 
     // ---------- ФУНКЦИИ ДЛЯ РАБОТЫ С API ----------
     function escapeHtml(text) {
