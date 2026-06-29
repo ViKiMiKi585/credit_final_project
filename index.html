@@ -773,11 +773,11 @@
 
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <script>
   (function() {
     // ===== ВАШ НОВЫЙ URL =====
-    const API_URL = 'https://script.google.com/macros/s/AKfycbyY_Jg1zbHtewijaFQ6S_BRidtZYDEOJccj0zaBXwHbpotjD6e2zGnodn-OBJV4Sp8WEg/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbypQnwgLtzMLf1ONDu6lHYmfjZL855aZ34iwe1Rq7fo4Edl0mg_QtCGHBpbhC2NQn1fIw/exec';
 
     // ---------- АНИМАЦИЯ ----------
     const fadeSections = document.querySelectorAll('.fade-section');
@@ -869,15 +869,9 @@
         const data = await response.json();
 
         if (Array.isArray(data)) {
-          const feedbacks = data.filter(item => 
-            item.liked !== undefined || 
-            item.missed !== undefined || 
-            item.learned !== undefined
-          );
-          
-          const liked = feedbacks.map(f => f.liked).filter(Boolean);
-          const missed = feedbacks.map(f => f.missed).filter(Boolean);
-          const learned = feedbacks.map(f => f.learned).filter(Boolean);
+          const liked = data.map(f => f.liked).filter(Boolean);
+          const missed = data.map(f => f.missed).filter(Boolean);
+          const learned = data.map(f => f.learned).filter(Boolean);
 
           renderBoard(liked, missed, learned);
         } else {
@@ -915,7 +909,7 @@
         return;
       }
 
-      const payload = { type: 'feedback', name, liked, missed, learned };
+      const payload = { name, liked, missed, learned };
 
       try {
         const response = await fetch(API_URL, {
@@ -944,89 +938,17 @@
       }
     });
 
-    // ---------- ЗАГРУЗКА ПОЖЕЛАНИЙ ----------
-    const wishesWall = document.getElementById('wishesWall');
-
-    async function loadWishes() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        if (Array.isArray(data)) {
-          const wishes = data
-            .filter(item => item.text !== undefined)
-            .map(item => ({
-              name: item.name || 'Аноним',
-              text: item.text || ''
-            }));
-
-          renderWishes(wishes);
-        }
-      } catch (error) {
-        console.error('Ошибка загрузки пожеланий:', error);
-        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">❌ Ошибка загрузки пожеланий</div>';
-      }
-    }
-
-    function renderWishes(wishes) {
-      if (wishes.length === 0) {
-        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">Пока нет пожеланий. Будьте первыми! ✨</div>';
-        return;
-      }
-      wishesWall.innerHTML = wishes.map(w => 
-        `<div class="wish-item"><strong>${escapeHtml(w.name)}</strong>: ${escapeHtml(w.text)}</div>`
-      ).join('');
-      wishesWall.scrollTop = wishesWall.scrollHeight;
-    }
-
-    // ---------- ОТПРАВКА ПОЖЕЛАНИЯ ----------
-    document.getElementById('wishesForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('wishName').value.trim() || 'Аноним';
-      const text = document.getElementById('wishText').value.trim();
-
-      if (!text) {
-        alert('Напишите пожелание :)');
-        return;
-      }
-
-      const payload = { type: 'wish', name, text };
-
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          document.getElementById('wishName').value = '';
-          document.getElementById('wishText').value = '';
-
-          setTimeout(loadWishes, 1000);
-          alert('🌟 Спасибо! Ваше пожелание сохранено.');
-        } else {
-          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
-        }
-
-      } catch (error) {
-        console.error('Ошибка отправки пожелания:', error);
-        alert('❌ Ошибка отправки. Попробуйте ещё раз.');
-      }
-    });
-
     // ---------- ЗАПУСК ----------
     loadBoard();
-    loadWishes();
+
+    // ---------- Пожелания отключены для простоты ----------
+    const wishesWall = document.getElementById('wishesWall');
+    if (wishesWall) {
+      wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">💡 Пожелания временно отключены для стабильности.</div>';
+    }
 
   })();
-</script>
+ </script>
 
 </body>
 </html>
