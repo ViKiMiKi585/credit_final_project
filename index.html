@@ -278,189 +278,51 @@
       color: var(--orange);
       transform: translateY(-2px);
     }
-    .feedback-section {
+    /* ----- СТИЛИ ДЛЯ БЛОКОВ С Miro (вместо форм) ----- */
+    .miro-section {
       background: var(--bg-elevated);
       border-radius: 2.2rem;
-      padding: 2rem 2rem 2.2rem;
+      padding: 2.5rem 2rem;
       border: 2px solid var(--border-light);
       margin-top: 2rem;
+      text-align: center;
     }
-    .feedback-section h2 {
+    .miro-section h2 {
       font-weight: 700;
       font-size: 1.3rem;
       color: var(--purple);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.5rem;
     }
-    .feedback-section .sub {
+    .miro-section .sub {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-bottom: 1.5rem;
     }
-    .feedback-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 700px;
-    }
-    .feedback-form input,
-    .feedback-form textarea {
-      background: var(--bg-card);
-      border: 2px solid var(--border-light);
-      border-radius: 2rem;
-      padding: 0.8rem 1.4rem;
-      font-family: var(--font);
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      outline: none;
-      transition: 0.3s;
-    }
-    .feedback-form input:focus,
-    .feedback-form textarea:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 4px rgba(232, 106, 31, 0.12);
-    }
-    .feedback-form textarea {
-      border-radius: 1.6rem;
-      resize: vertical;
-      min-height: 60px;
-    }
-    .feedback-form button {
+    .miro-button {
+      display: inline-block;
       background: var(--orange);
-      border: none;
-      padding: 0.7rem 2.2rem;
-      border-radius: 3rem;
-      font-weight: 700;
-      font-size: 1rem;
       color: #fff;
-      cursor: pointer;
-      transition: 0.3s;
-      align-self: flex-start;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.8rem 2.5rem;
+      border-radius: 3rem;
+      text-decoration: none;
       border-bottom: 4px solid var(--orange-dark);
+      transition: 0.3s;
     }
-    .feedback-form button:hover {
+    .miro-button:hover {
       background: var(--orange-bright);
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(232, 106, 31, 0.30);
     }
-    .board {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.2rem;
-    }
-    .board-col {
-      background: var(--bg-card);
-      border-radius: 1.8rem;
-      padding: 1.2rem 1rem 0.8rem;
-      border: 2px solid var(--border-light);
-    }
-    .board-col h3 {
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      border-bottom: 2px solid var(--border-light);
-      padding-bottom: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .board-col h3 .accent { color: var(--purple); }
-    .feedback-card {
-      background: var(--bg-elevated);
-      padding: 0.6rem 1rem;
-      border-radius: 1.2rem;
-      margin-bottom: 0.6rem;
-      border-left: 4px solid var(--orange);
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      word-break: break-word;
-    }
-    .feedback-card strong { color: var(--purple); font-weight: 700; }
-    .wishes-section {
-      background: var(--purple-pale);
-      border-radius: 2.2rem;
-      padding: 2rem 2rem 2.2rem;
-      border: 2px solid var(--purple-bright);
-      margin-top: 2.5rem;
-    }
-    .wishes-section h2 {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--purple);
-      margin-bottom: 0.2rem;
-    }
-    .wishes-section .sub {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-    .wishes-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 700px;
-    }
-    .wishes-form input,
-    .wishes-form textarea {
-      background: var(--bg-card);
-      border: 2px solid var(--border-light);
-      border-radius: 2rem;
-      padding: 0.8rem 1.4rem;
-      font-family: var(--font);
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      outline: none;
-      transition: 0.3s;
-    }
-    .wishes-form input:focus,
-    .wishes-form textarea:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 4px rgba(90, 42, 140, 0.10);
-    }
-    .wishes-form textarea {
-      border-radius: 1.6rem;
-      resize: vertical;
-      min-height: 60px;
-    }
-    .wishes-form button {
+    .miro-button.purple {
       background: var(--purple);
-      border: none;
-      padding: 0.7rem 2.2rem;
-      border-radius: 3rem;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #fff;
-      cursor: pointer;
-      transition: 0.3s;
-      align-self: flex-start;
-      border-bottom: 4px solid var(--purple-dark);
+      border-bottom-color: var(--purple-dark);
     }
-    .wishes-form button:hover {
+    .miro-button.purple:hover {
       background: var(--purple-bright);
-      transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(90, 42, 140, 0.30);
     }
-    .wishes-wall {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      margin-top: 1.5rem;
-      max-height: 300px;
-      overflow-y: auto;
-      padding-right: 0.5rem;
-    }
-    .wishes-wall::-webkit-scrollbar { width: 4px; }
-    .wishes-wall::-webkit-scrollbar-thumb { background: var(--purple-bright); border-radius: 2rem; }
-    .wish-item {
-      background: var(--bg-card);
-      padding: 0.8rem 1.4rem;
-      border-radius: 1.4rem;
-      border-left: 4px solid var(--orange);
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .wish-item strong { color: var(--purple); }
     .leader-section {
       background: linear-gradient(135deg, var(--purple-pale) 0%, var(--orange-pale) 100%);
       border-radius: 2.2rem;
@@ -694,7 +556,7 @@
     <div id="russiaMap"></div>
     <div class="city-chips">
       <span class="city-chip">Москва</span>
-      <span class="city-chip">Тверь</span>
+      <span class="city-chip">Тверская область</span>
       <span class="city-chip">Самарская область</span>
       <span class="city-chip">Московская область</span>
       <span class="city-chip">Санкт-Петербург</span>
@@ -706,35 +568,13 @@
     </div>
   </div>
 
-  <!-- ===== РЕФЛЕКСИЯ ===== -->
-  <div class="feedback-section fade-section" id="feedbackSection">
+  <!-- ===== РЕФЛЕКСИЯ (ССЫЛКА НА Miro) ===== -->
+  <div class="miro-section fade-section" id="feedbackSection">
     <h2>💬 Рефлексия команды</h2>
-    <div class="sub">Заполните форму — ваши ответы появятся на доске ниже</div>
-
-    <form id="feedbackForm" class="feedback-form">
-      <input type="text" id="fbName" placeholder="Имя (можно анонимно)" />
-      <textarea id="fbLiked" placeholder="❤️ Что понравилось?"></textarea>
-      <textarea id="fbMissed" placeholder="🔧 Чего не хватило?"></textarea>
-      <textarea id="fbLearned" placeholder="🚀 Чему научился?"></textarea>
-      <button type="submit">➕ Добавить на доску</button>
-    </form>
-
-    <div id="boardLoader" class="loader">⏳ Загрузка отзывов...</div>
-
-    <div class="board" id="boardContainer" style="display:none;">
-      <div class="board-col">
-        <h3><span class="accent">❤️</span> Понравилось</h3>
-        <div id="boardLiked"></div>
-      </div>
-      <div class="board-col">
-        <h3><span class="accent">🔧</span> Не хватило</h3>
-        <div id="boardMissed"></div>
-      </div>
-      <div class="board-col">
-        <h3><span class="accent">🚀</span> Научился</h3>
-        <div id="boardLearned"></div>
-      </div>
-    </div>
+    <div class="sub">Заполните доску в Miro — ваши ответы появятся на общей доске</div>
+    <a href="https://miro.com/app/board/uXjVINts-Z4=/" target="_blank" class="miro-button">
+      🚀 Перейти к доске Miro
+    </a>
   </div>
 
   <!-- ===== БЛОК РУКОВОДИТЕЛЯ ===== -->
@@ -756,20 +596,13 @@
     </div>
   </div>
 
-  <!-- ===== ПОЖЕЛАНИЯ ===== -->
-  <div class="wishes-section fade-section" id="wishesSection">
+  <!-- ===== ТЁПЛЫЕ ПОЖЕЛАНИЯ (ССЫЛКА НА Miro) ===== -->
+  <div class="miro-section fade-section" id="wishesSection" style="border-color: var(--purple-bright); background: var(--purple-pale);">
     <h2>🌟 Тёплые пожелания</h2>
-    <div class="sub">Скажите друг другу что-то важное напоследок</div>
-
-    <form id="wishesForm" class="wishes-form">
-      <input type="text" id="wishName" placeholder="Ваше имя" />
-      <textarea id="wishText" placeholder="Кому и что вы хотите пожелать?"></textarea>
-      <button type="submit">💫 Отправить пожелание</button>
-    </form>
-
-    <div class="wishes-wall" id="wishesWall">
-      <!-- Сюда загружаются пожелания -->
-    </div>
+    <div class="sub">Оставьте пожелания коллегам на доске в Miro</div>
+    <a href="https://miro.com/app/board/uXjVINts-Z4=/" target="_blank" class="miro-button purple">
+      💫 Перейти к доске Miro
+    </a>
   </div>
 
   <div class="footer-closing fade-section">
@@ -782,9 +615,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   (function() {
-    // ===== НОВЫЙ URL =====
-    const API_URL = 'https://script.google.com/macros/s/AKfycbx2b8efhpZ5-iBTxhVKYmP5n3D_ML8_taPqi8GoY-pXcslFcia_3KsV4CEM_6AH6qk/exec';
-
     // ---------- АНИМАЦИЯ ----------
     const fadeSections = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver((entries) => {
@@ -847,190 +677,6 @@
     });
 
     setTimeout(() => map.invalidateSize(), 500);
-
-    // ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ----------
-    function escapeHtml(text) {
-      if (!text) return '';
-      const d = document.createElement('div');
-      d.textContent = text;
-      return d.innerHTML;
-    }
-
-    // ---------- ЗАГРУЗКА ОТЗЫВОВ ----------
-    const boardLiked = document.getElementById('boardLiked');
-    const boardMissed = document.getElementById('boardMissed');
-    const boardLearned = document.getElementById('boardLearned');
-    const boardContainer = document.getElementById('boardContainer');
-    const boardLoader = document.getElementById('boardLoader');
-
-    async function loadBoard() {
-      try {
-        boardLoader.style.display = 'block';
-        boardContainer.style.display = 'none';
-
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        if (Array.isArray(data)) {
-          const feedbacks = data.filter(item => 
-            item.liked !== undefined || 
-            item.missed !== undefined || 
-            item.learned !== undefined
-          );
-          
-          const liked = feedbacks.map(f => f.liked).filter(Boolean);
-          const missed = feedbacks.map(f => f.missed).filter(Boolean);
-          const learned = feedbacks.map(f => f.learned).filter(Boolean);
-
-          renderBoard(liked, missed, learned);
-        } else {
-          console.error('Неверный ответ от сервера:', data);
-          boardLoader.textContent = '❌ Не удалось загрузить отзывы.';
-        }
-
-        boardLoader.style.display = 'none';
-        boardContainer.style.display = 'grid';
-
-      } catch (error) {
-        console.error('Ошибка загрузки отзывов:', error);
-        boardLoader.textContent = '❌ Ошибка подключения к таблице. Проверьте консоль.';
-        boardLoader.style.display = 'block';
-      }
-    }
-
-    function renderBoard(liked, missed, learned) {
-      boardLiked.innerHTML = liked.map(t => `<div class="feedback-card">❤️ ${escapeHtml(t)}</div>`).join('');
-      boardMissed.innerHTML = missed.map(t => `<div class="feedback-card">🔧 ${escapeHtml(t)}</div>`).join('');
-      boardLearned.innerHTML = learned.map(t => `<div class="feedback-card">🚀 ${escapeHtml(t)}</div>`).join('');
-    }
-
-    // ---------- ОТПРАВКА ОТЗЫВА ----------
-    document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('fbName').value.trim() || 'Аноним';
-      const liked = document.getElementById('fbLiked').value.trim();
-      const missed = document.getElementById('fbMissed').value.trim();
-      const learned = document.getElementById('fbLearned').value.trim();
-
-      if (!liked && !missed && !learned) {
-        alert('Заполните хотя бы одно поле');
-        return;
-      }
-
-      const payload = { type: 'feedback', name, liked, missed, learned };
-
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-        
-        if (result.success) {
-          document.getElementById('fbLiked').value = '';
-          document.getElementById('fbMissed').value = '';
-          document.getElementById('fbLearned').value = '';
-          document.getElementById('fbName').value = '';
-
-          setTimeout(loadBoard, 1000);
-          alert('✅ Спасибо! Ваш отзыв сохранён.');
-        } else {
-          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
-        }
-
-      } catch (error) {
-        console.error('Ошибка отправки отзыва:', error);
-        alert('❌ Ошибка отправки. Попробуйте ещё раз.');
-      }
-    });
-
-    // ---------- ЗАГРУЗКА ПОЖЕЛАНИЙ ----------
-    const wishesWall = document.getElementById('wishesWall');
-
-    async function loadWishes() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        if (Array.isArray(data)) {
-          const wishes = data
-            .filter(item => item.text !== undefined)
-            .map(item => ({
-              name: item.name || 'Аноним',
-              text: item.text || ''
-            }));
-
-          renderWishes(wishes);
-        }
-      } catch (error) {
-        console.error('Ошибка загрузки пожеланий:', error);
-        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">❌ Ошибка загрузки пожеланий</div>';
-      }
-    }
-
-    function renderWishes(wishes) {
-      if (wishes.length === 0) {
-        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">Пока нет пожеланий. Будьте первыми! ✨</div>';
-        return;
-      }
-      wishesWall.innerHTML = wishes.map(w => 
-        `<div class="wish-item"><strong>${escapeHtml(w.name)}</strong>: ${escapeHtml(w.text)}</div>`
-      ).join('');
-      wishesWall.scrollTop = wishesWall.scrollHeight;
-    }
-
-    // ---------- ОТПРАВКА ПОЖЕЛАНИЯ ----------
-    document.getElementById('wishesForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('wishName').value.trim() || 'Аноним';
-      const text = document.getElementById('wishText').value.trim();
-
-      if (!text) {
-        alert('Напишите пожелание :)');
-        return;
-      }
-
-      const payload = { type: 'wish', name, text };
-
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          document.getElementById('wishName').value = '';
-          document.getElementById('wishText').value = '';
-
-          setTimeout(loadWishes, 1000);
-          alert('🌟 Спасибо! Ваше пожелание сохранено.');
-        } else {
-          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
-        }
-
-      } catch (error) {
-        console.error('Ошибка отправки пожелания:', error);
-        alert('❌ Ошибка отправки. Попробуйте ещё раз.');
-      }
-    });
-
-    // ---------- ЗАПУСК ----------
-    loadBoard();
-    loadWishes();
-
   })();
 </script>
 
