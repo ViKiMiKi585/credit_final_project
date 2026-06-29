@@ -130,18 +130,6 @@
       margin-top: 0.2rem;
       font-weight: 600;
     }
-    .analogy-box {
-      background: var(--orange-pale);
-      border-left: 5px solid var(--orange);
-      padding: 0.6rem 1.8rem;
-      border-radius: 3rem;
-      display: inline-block;
-      font-weight: 500;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin: 0.2rem 0 0.8rem 0;
-    }
-    .analogy-box strong { color: var(--purple); }
     .hours-roles {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -591,16 +579,12 @@
 </head>
 <body>
 
-<!-- ===== БЛОК С ПАРОЛЕМ (самый простой) ===== -->
+<!-- ===== БЛОК С ПАРОЛЕМ ===== -->
 <script>
-  // 🔑 Пароль, который знает команда
   const CORRECT_PASSWORD = 'ретро2026';
-  
-  // Проверяем, есть ли уже сессия
   const session = sessionStorage.getItem('retro_access');
   if (session !== 'granted') {
     const userPassword = prompt('🔒 Введите пароль для доступа к сайту:');
-    
     if (userPassword !== CORRECT_PASSWORD) {
       document.body.innerHTML = `
         <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#f5f0fa;font-family:'Inter',sans-serif;flex-direction:column;gap:16px;text-align:center;padding:20px;">
@@ -612,12 +596,9 @@
       `;
       throw new Error('Доступ запрещён');
     }
-    
-    // Запоминаем, что пароль введён (для текущей сессии)
     sessionStorage.setItem('retro_access', 'granted');
   }
 </script>
-<!-- ===== КОНЕЦ БЛОКА С ПАРОЛЕМ ===== -->
 
 <div class="container">
 
@@ -638,27 +619,27 @@
   </div>
 
   <div class="stat-panel fade-section" style="margin-top:0.5rem;">
-  <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
-    <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">6 700 км</div>
-    <div class="stat-label">🚶 пешком от Уфы до Владивостока и обратно</div>
+    <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
+      <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">6 700 км</div>
+      <div class="stat-label">🚶 пешком от Уфы до Владивостока и обратно</div>
+    </div>
+    <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
+      <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">67 раз</div>
+      <div class="stat-label">✈️ перелёт Москва – Нью-Йорк туда-обратно</div>
+    </div>
+    <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
+      <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">18 раз</div>
+      <div class="stat-label">📺 пересмотреть «Игру престолов»</div>
+    </div>
+    <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
+      <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">893 матча</div>
+      <div class="stat-label">⚽ футбольных (по 90 минут)</div>
+    </div>
+    <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
+      <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">4 824 000</div>
+      <div class="stat-label">❤️ ударов сердца</div>
+    </div>
   </div>
-  <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
-    <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">67 раз</div>
-    <div class="stat-label">✈️ перелёт Москва – Нью-Йорк туда-обратно</div>
-  </div>
-  <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
-    <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">18 раз</div>
-    <div class="stat-label">📺 пересмотреть «Игру престолов»</div>
-  </div>
-  <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
-    <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">893 матча</div>
-    <div class="stat-label">⚽ футбольных (по 90 минут)</div>
-  </div>
-  <div class="stat-card" style="background:var(--orange-pale); border-color:var(--orange);">
-    <div style="font-size:1.8rem; font-weight:700; color:var(--orange);">4 824 000</div>
-    <div class="stat-label">❤️ ударов сердца</div>
-  </div>
-</div>
 
   <div class="hours-roles fade-section">
     <div class="hours-flip-card">
@@ -752,8 +733,8 @@
 
   <div class="leader-section fade-section" id="leaderSection">
     <div class="leader-avatar">
-      <!-- ВСТАВЬТЕ СВОЁ ФОТО ВМЕСТО ПЛЕЙСХОЛДЕРА -->
-      <!-- <img src="https://axenix.pro/wp-content/uploads/2023/11/vladimirseljankin.jpg" alt="Руководитель" /> -->
+      <!-- ВСТАВЬТЕ СВОЁ ФОТО -->
+      <!-- <img src="путь_к_вашему_фото.jpg" alt="Руководитель" /> -->
       <span class="placeholder">👤</span>
     </div>
     <div class="leader-info">
@@ -795,10 +776,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   (function() {
-    // ⚠️ ВАШ URL ИЗ GOOGLE APPS SCRIPT
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwTPrUtUASzLFHVG0H_xUKIUHjGIX6eHBG56HvgJUbS9XXpt5U6PPfzaphwMrihsaP6Eg/exec';
+    // ВАШ НОВЫЙ URL ИЗ GOOGLE APPS SCRIPT
+    const API_URL = 'https://script.google.com/macros/s/AKfycbyrIdL_ECNiDSJdt3mG3sJML4Vt6K4ZDGOqjFJHJEqc6vowVS1M5orH3-bkDuep2sb4eg/exec';
 
-    // ---------- АНИМАЦИЯ ----------
+    // ---------- АНИМАЦИЯ ПРИ СКРОЛЛЕ ----------
     const fadeSections = document.querySelectorAll('.fade-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
@@ -812,57 +793,56 @@
     }, { threshold: 0.15 });
     fadeSections.forEach(section => observer.observe(section));
 
-   // ---------- КАРТА (2ГИС) ----------
-const map = L.map('russiaMap', {
-  center: [55, 70],
-  zoom: 4,
-  zoomControl: true,
-  scrollWheelZoom: true
-});
+    // ---------- КАРТА (ПЕРВАЯ ВЕРСИЯ: OpenStreetMap + CartoDB) ----------
+    const map = L.map('russiaMap', {
+      center: [55, 70],
+      zoom: 4,
+      zoomControl: true,
+      scrollWheelZoom: true
+    });
 
-L.tileLayer('https://tile{n}.maps.2gis.com/v2/tiles/online_hd/{z}/{x}/{y}.png?key=c544c0e9-c55d-44a8-a53b-02161b587322', {
-  attribution: '&copy; <a href="https://2gis.ru" target="_blank">2ГИС</a>',
-  subdomains: '01234',
-  maxZoom: 19
-}).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; CartoDB',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
 
-// Города и маркеры (оставляем как было)
-const cities = [
-  { name: 'Москва', coords: [55.7558, 37.6173] },
-  { name: 'Тверь', coords: [56.8596, 35.9116] },
-  { name: 'Самарская область', coords: [53.1959, 50.1002] },
-  { name: 'Московская область', coords: [55.6121, 37.7000] },
-  { name: 'Санкт-Петербург', coords: [59.9343, 30.3351] },
-  { name: 'Казань', coords: [55.7887, 49.1221] },
-  { name: 'Нижний Новгород', coords: [56.2965, 43.9361] },
-  { name: 'Смоленск', coords: [54.7826, 32.0453] },
-  { name: 'Краснодар', coords: [45.0355, 38.9753] },
-  { name: 'Алматы', coords: [43.2220, 76.8512] }
-];
+    const cities = [
+      { name: 'Москва', coords: [55.7558, 37.6173] },
+      { name: 'Тверь', coords: [56.8596, 35.9116] },
+      { name: 'Самарская область', coords: [53.1959, 50.1002] },
+      { name: 'Московская область', coords: [55.6121, 37.7000] },
+      { name: 'Санкт-Петербург', coords: [59.9343, 30.3351] },
+      { name: 'Казань', coords: [55.7887, 49.1221] },
+      { name: 'Нижний Новгород', coords: [56.2965, 43.9361] },
+      { name: 'Смоленск', coords: [54.7826, 32.0453] },
+      { name: 'Краснодар', coords: [45.0355, 38.9753] },
+      { name: 'Алматы', coords: [43.2220, 76.8512] }
+    ];
 
-const markerIcon = L.divIcon({
-  className: 'custom-marker',
-  html: '<div style="background: #E86A1F; width:18px; height:18px; border-radius:50%; border:3px solid #fff; box-shadow: 0 0 0 2px #5A2A8C;"></div>',
-  iconSize: [24, 24],
-  iconAnchor: [12, 12],
-  popupAnchor: [0, -12]
-});
+    const markerIcon = L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background: #E86A1F; width:18px; height:18px; border-radius:50%; border:3px solid #fff; box-shadow: 0 0 0 2px #5A2A8C;"></div>',
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+      popupAnchor: [0, -12]
+    });
 
-cities.forEach(city => {
-  L.marker(city.coords, { icon: markerIcon })
-    .addTo(map)
-    .bindPopup(`<b style="color:#5A2A8C;">${city.name}</b><br><span style="color:#4a3a5e;">финансовый центр</span>`);
-  L.circle(city.coords, {
-    color: '#E86A1F',
-    fillColor: '#E86A1F',
-    fillOpacity: 0.08,
-    radius: 140000
-  }).addTo(map);
-});
+    cities.forEach(city => {
+      L.marker(city.coords, { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(`<b style="color:#5A2A8C;">${city.name}</b><br><span style="color:#4a3a5e;">финансовый центр</span>`);
+      L.circle(city.coords, {
+        color: '#E86A1F',
+        fillColor: '#E86A1F',
+        fillOpacity: 0.08,
+        radius: 140000
+      }).addTo(map);
+    });
 
-setTimeout(() => map.invalidateSize(), 500);
+    setTimeout(() => map.invalidateSize(), 500);
 
-    // ---------- ФУНКЦИИ ДЛЯ РАБОТЫ С API ----------
+    // ---------- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ----------
     function escapeHtml(text) {
       if (!text) return '';
       const d = document.createElement('div');
@@ -870,7 +850,7 @@ setTimeout(() => map.invalidateSize(), 500);
       return d.innerHTML;
     }
 
-    // ---------- ЗАГРУЗКА ОТЗЫВОВ (рефлексия) ----------
+    // ---------- ЗАГРУЗКА ОТЗЫВОВ (РЕФЛЕКСИЯ) ----------
     const boardLiked = document.getElementById('boardLiked');
     const boardMissed = document.getElementById('boardMissed');
     const boardLearned = document.getElementById('boardLearned');
@@ -883,11 +863,18 @@ setTimeout(() => map.invalidateSize(), 500);
         boardContainer.style.display = 'none';
 
         const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
 
         if (Array.isArray(data)) {
-          // Фильтруем: если у объекта есть поля liked/missed/learned — это отзывы
-          const feedbacks = data.filter(item => item.liked !== undefined || item.missed !== undefined || item.learned !== undefined);
+          // Фильтруем отзывы (где есть liked/missed/learned)
+          const feedbacks = data.filter(item => 
+            item.liked !== undefined || 
+            item.missed !== undefined || 
+            item.learned !== undefined
+          );
           
           const liked = feedbacks.map(f => f.liked).filter(Boolean);
           const missed = feedbacks.map(f => f.missed).filter(Boolean);
@@ -895,7 +882,7 @@ setTimeout(() => map.invalidateSize(), 500);
 
           renderBoard(liked, missed, learned);
         } else {
-          console.error('Ошибка:', data);
+          console.error('Неверный ответ от сервера:', data);
           boardLoader.textContent = '❌ Не удалось загрузить отзывы.';
         }
 
@@ -903,8 +890,8 @@ setTimeout(() => map.invalidateSize(), 500);
         boardContainer.style.display = 'grid';
 
       } catch (error) {
-        console.error('Ошибка загрузки:', error);
-        boardLoader.textContent = '❌ Ошибка подключения к Google Таблице.';
+        console.error('Ошибка загрузки отзывов:', error);
+        boardLoader.textContent = '❌ Ошибка подключения к таблице. Проверьте консоль.';
         boardLoader.style.display = 'block';
       }
     }
@@ -932,46 +919,56 @@ setTimeout(() => map.invalidateSize(), 500);
       const payload = { type: 'feedback', name, liked, missed, learned };
 
       try {
-        await fetch(API_URL, {
+        const response = await fetch(API_URL, {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        document.getElementById('fbLiked').value = '';
-        document.getElementById('fbMissed').value = '';
-        document.getElementById('fbLearned').value = '';
-        document.getElementById('fbName').value = '';
+        const result = await response.json();
+        
+        if (result.success) {
+          document.getElementById('fbLiked').value = '';
+          document.getElementById('fbMissed').value = '';
+          document.getElementById('fbLearned').value = '';
+          document.getElementById('fbName').value = '';
 
-        setTimeout(loadBoard, 1000);
-        alert('✅ Спасибо! Ваш отзыв сохранён.');
+          setTimeout(loadBoard, 1000);
+          alert('✅ Спасибо! Ваш отзыв сохранён.');
+        } else {
+          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
+        }
 
       } catch (error) {
-        console.error('Ошибка отправки:', error);
+        console.error('Ошибка отправки отзыва:', error);
         alert('❌ Ошибка отправки. Попробуйте ещё раз.');
       }
     });
 
-    // ---------- ЗАГРУЗКА ПОЖЕЛАНИЙ ИЗ ТАБЛИЦЫ ----------
+    // ---------- ЗАГРУЗКА ПОЖЕЛАНИЙ ----------
     const wishesWall = document.getElementById('wishesWall');
 
     async function loadWishes() {
       try {
         const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
 
         if (Array.isArray(data)) {
-          // Фильтруем только пожелания (где есть поле text)
-          const wishes = data.filter(item => item.text !== undefined).map(item => ({
-            name: item.name || 'Аноним',
-            text: item.text || ''
-          }));
+          const wishes = data
+            .filter(item => item.text !== undefined)
+            .map(item => ({
+              name: item.name || 'Аноним',
+              text: item.text || ''
+            }));
 
           renderWishes(wishes);
         }
       } catch (error) {
         console.error('Ошибка загрузки пожеланий:', error);
+        wishesWall.innerHTML = '<div class="wish-item" style="color:var(--text-muted);border-left-color:var(--purple-bright);">❌ Ошибка загрузки пожеланий</div>';
       }
     }
 
@@ -1001,21 +998,26 @@ setTimeout(() => map.invalidateSize(), 500);
       const payload = { type: 'wish', name, text };
 
       try {
-        await fetch(API_URL, {
+        const response = await fetch(API_URL, {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        document.getElementById('wishName').value = '';
-        document.getElementById('wishText').value = '';
+        const result = await response.json();
 
-        setTimeout(loadWishes, 1000);
-        alert('🌟 Спасибо! Ваше пожелание сохранено.');
+        if (result.success) {
+          document.getElementById('wishName').value = '';
+          document.getElementById('wishText').value = '';
+
+          setTimeout(loadWishes, 1000);
+          alert('🌟 Спасибо! Ваше пожелание сохранено.');
+        } else {
+          alert('❌ Ошибка: ' + (result.error || 'неизвестная ошибка'));
+        }
 
       } catch (error) {
-        console.error('Ошибка отправки:', error);
+        console.error('Ошибка отправки пожелания:', error);
         alert('❌ Ошибка отправки. Попробуйте ещё раз.');
       }
     });
