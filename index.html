@@ -823,11 +823,10 @@
       scrollWheelZoom: true
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap, CartoDB',
-      subdomains: 'abcd',
-      maxZoom: 19
-    }).addTo(map);
+   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '&copy; Esri',
+  maxZoom: 19
+}).addTo(map);
 
     const cities = [
       { name: 'Москва', coords: [55.7558, 37.6173] },
